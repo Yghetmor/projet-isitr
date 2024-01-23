@@ -1,0 +1,5 @@
+package com.apprest.aventix.model;
+
+public class User {
+
+}
