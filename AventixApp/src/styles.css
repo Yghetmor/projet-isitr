@@ -1,0 +1,10 @@
+*{
+  margin:0;
+  padding:0;
+  text-decoration:0;
+  list-style: none;
+}
+
+.bg-purple{
+  background-color: darkslateblue;
+}
