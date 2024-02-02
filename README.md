@@ -1,4 +1,4 @@
-# Projet AVENTIX (API gestion paiement carte à puce)
+# Projet
 
 ## Setup
 BDD : MySQL (peut être changé en cours de projet)
