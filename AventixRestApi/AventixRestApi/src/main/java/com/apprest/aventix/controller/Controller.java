@@ -18,7 +18,10 @@ public class Controller {
 
     @GetMapping("/operation")
     public ResponseEntity<?> processOperation(@RequestBody Operation operation) {
-
-        return new ResponseEntity<>(HttpStatus.OK);
+        if (operationService.processOperation(operation)) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
     }
 }
