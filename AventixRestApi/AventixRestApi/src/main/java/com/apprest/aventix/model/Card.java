@@ -8,7 +8,7 @@ import java.math.BigDecimal;
 @Entity
 public class Card implements Serializable {
 
-    enum State {
+    public enum State {
         GOOD,
         BAD
     }
