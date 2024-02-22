@@ -22,7 +22,7 @@ public class OperationService {
     }
 
     public boolean processOperation(Operation operation) {
-        Optional<Card> optionCard = cardDao.findCardById(operation.getId());
+        Optional<Card> optionCard = cardDao.findCardById(operation.getCardNo());
         if (optionCard.isEmpty()) {
             return false;
         } else {
