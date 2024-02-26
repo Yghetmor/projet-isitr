@@ -9,6 +9,8 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
@@ -24,7 +26,7 @@ import lombok.RequiredArgsConstructor;
 public class Role {
 	@Id
 	@GeneratedValue(strategy =GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	
 	@NonNull
 	@Enumerated(EnumType.STRING)

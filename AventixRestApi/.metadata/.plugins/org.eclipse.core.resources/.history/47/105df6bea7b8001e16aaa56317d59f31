@@ -1,5 +1,0 @@
-package com.apprest.aventix.dao;
-
-public interface UserDao {
-
-}
