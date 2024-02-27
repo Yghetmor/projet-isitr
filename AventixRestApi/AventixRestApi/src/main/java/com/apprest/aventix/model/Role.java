@@ -33,6 +33,6 @@ public class Role {
 	private ERole roleType;
 	
 	@OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
-	private List<User> users;
+	private List<Account> accounts;
 	
 }
