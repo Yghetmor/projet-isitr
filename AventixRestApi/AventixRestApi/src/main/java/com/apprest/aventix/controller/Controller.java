@@ -1,5 +1,6 @@
 package com.apprest.aventix.controller;
 
+import com.apprest.aventix.payload.request.LoginRequest;
 import com.apprest.aventix.payload.request.SignUpRequest;
 import com.apprest.aventix.service.AuthService;
 import com.apprest.aventix.service.OperationService;
@@ -26,12 +27,16 @@ public class Controller {
     public Controller(OperationService operationService) {
         this.operationService = operationService;
     }
-    
-    
-    
+      
     @PostMapping("/signup")
     public ResponseEntity<?> registerEmployer(@Valid @RequestBody SignUpRequest signUpRequest){
-    	return authService.registerEmployer(signUpRequest);
-    	
+    	return authService.registerEmployer(signUpRequest); 	
     }
+    
+    @PostMapping("/signin")
+    public ResponseEntity<?> loginEmployer(@Valid @RequestBody LoginRequest loginRequest){
+    	return authService.authenticateEmployer(loginRequest);
+    }
+    
+    
 }

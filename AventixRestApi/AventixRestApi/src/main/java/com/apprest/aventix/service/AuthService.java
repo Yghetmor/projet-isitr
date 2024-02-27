@@ -2,12 +2,17 @@ package com.apprest.aventix.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.apprest.aventix.model.ERole;
 import com.apprest.aventix.model.Employer;
 import com.apprest.aventix.model.Role;
 import com.apprest.aventix.model.Account;
+import com.apprest.aventix.payload.request.LoginRequest;
 import com.apprest.aventix.payload.request.SignUpRequest;
 import com.apprest.aventix.payload.response.MessageResponse;
 import com.apprest.aventix.repository.EmployerRepository;
@@ -18,6 +23,9 @@ import com.apprest.aventix.repository.AccountRepository;
 
 @Service
 public class AuthService {
+	
+    @Autowired
+    private AuthenticationManager authenticationManager;
 	
 	@Autowired
 	AccountRepository accountRepository;
@@ -57,6 +65,19 @@ public class AuthService {
 		
 		return ResponseEntity.ok(new MessageResponse("Employer registered successfully!"));
 				
+	}
+	
+	
+	public ResponseEntity<?> authenticateEmployer(LoginRequest loginRequest){
+		
+		Authentication authentication = authenticationManager.authenticate(
+				new UsernamePasswordAuthenticationToken(
+						loginRequest.getEmail(), 
+						loginRequest.getPassword()
+						));
+		
+		SecurityContextHolder.getContext().setAuthentication(authentication);
+		return ResponseEntity.ok(new MessageResponse("Employer logged in successfully!"));
 	}
 	
 
