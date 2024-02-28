@@ -6,12 +6,18 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableMethodSecurity
 public class SecurityConfig {
+	
+	@Bean
+	public PasswordEncoder passwordEncoder(){
+	return new BCryptPasswordEncoder();
+	}
 	
 	@Bean
 	public AuthenticationManager authenticationManager(AuthenticationConfiguration configuration)
@@ -26,12 +32,15 @@ public class SecurityConfig {
 		http.authorizeHttpRequests((authz) -> authz
 				.anyRequest().permitAll()			
 				);
+		
+//		this doesnt Work...
+//		http.authorizeHttpRequests((authz) -> authz
+//		.requestMatchers("/aventix/signup").permitAll()
+//		.anyRequest().authenticated()			
+//		);
 		return http.build();
 	}
 
-//	http.authorizeHttpRequests((authz) -> authz
-//			.requestMatchers("/aventix/signup").permitAll()
-//			.anyRequest().authenticated()			
-//			);
+
 
 }

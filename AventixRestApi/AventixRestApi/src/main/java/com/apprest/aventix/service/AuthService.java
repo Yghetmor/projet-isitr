@@ -5,7 +5,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.apprest.aventix.model.ERole;
@@ -36,6 +38,9 @@ public class AuthService {
 	@Autowired
 	EmployerRepository employerRepository;
 	
+	@Autowired
+	PasswordEncoder passwordEncoder;
+	
 	public ResponseEntity<?> registerEmployer(SignUpRequest signUpRequest){
 		if (accountRepository.existsByEmail(signUpRequest.getEmail())) {
 		    return ResponseEntity
@@ -51,7 +56,7 @@ public class AuthService {
 		}
 		
 		Account account = new Account(signUpRequest.getEmail(),
-				signUpRequest.getPassword());
+				passwordEncoder.encode(signUpRequest.getPassword()));
 		
 		Role employerRole = roleRepository.findByRoleType(ERole.ROLE_USER_EMPLOYER)
 				.orElseThrow(() -> new RuntimeException("Error: Role not found."));
@@ -70,14 +75,32 @@ public class AuthService {
 	
 	public ResponseEntity<?> authenticateEmployer(LoginRequest loginRequest){
 		
-		Authentication authentication = authenticationManager.authenticate(
-				new UsernamePasswordAuthenticationToken(
-						loginRequest.getEmail(), 
-						loginRequest.getPassword()
-						));
+		try {
+			UsernamePasswordAuthenticationToken upaToken = 
+					new UsernamePasswordAuthenticationToken(
+					loginRequest.getEmail(), 
+					loginRequest.getPassword()
+					);
+			
+			Authentication authentication = authenticationManager.authenticate(upaToken);
+			
+			
+//			Authentication authentication = authenticationManager.authenticate(
+//					new UsernamePasswordAuthenticationToken(
+//							loginRequest.getEmail(), 
+//							loginRequest.getPassword()
+//							));
+			
+//			SecurityContextHolder.getContext().setAuthentication(authentication);
+			return ResponseEntity.ok(new MessageResponse("Employer logged in successfully!"));
+			
+		}catch (AuthenticationException e){
+			e.getMessage();
+			e.printStackTrace();
+			 return ResponseEntity.ok(new MessageResponse("Employer not logged in !"));
+			
+		}
 		
-		SecurityContextHolder.getContext().setAuthentication(authentication);
-		return ResponseEntity.ok(new MessageResponse("Employer logged in successfully!"));
 	}
 	
 
