@@ -1,5 +1,7 @@
 package com.apprest.aventix.service;
 
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -7,6 +9,8 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -16,9 +20,11 @@ import com.apprest.aventix.model.Role;
 import com.apprest.aventix.model.Account;
 import com.apprest.aventix.payload.request.LoginRequest;
 import com.apprest.aventix.payload.request.SignUpRequest;
+import com.apprest.aventix.payload.response.JwtResponse;
 import com.apprest.aventix.payload.response.MessageResponse;
 import com.apprest.aventix.repository.EmployerRepository;
 import com.apprest.aventix.repository.RoleRepository;
+import com.apprest.aventix.security.jwtUtils;
 import com.apprest.aventix.repository.AccountRepository;
 
 
@@ -40,6 +46,9 @@ public class AuthService {
 	
 	@Autowired
 	PasswordEncoder passwordEncoder;
+	
+	@Autowired
+	jwtUtils jwtUtils;
 	
 	public ResponseEntity<?> registerEmployer(SignUpRequest signUpRequest){
 		if (accountRepository.existsByEmail(signUpRequest.getEmail())) {
@@ -83,16 +92,23 @@ public class AuthService {
 					);
 			
 			Authentication authentication = authenticationManager.authenticate(upaToken);
+			SecurityContextHolder.getContext().setAuthentication(authentication);
+			
+			String jwtToken = jwtUtils.generateJwtToken(authentication);
+			
+			User accountPrincipal = (User) authentication.getPrincipal();
+			  
+			//maybe throw exception better than empty string ? 
+			String role = accountPrincipal.getAuthorities().stream() .findFirst().map(item ->
+			item.getAuthority()).orElse("");
+						
+			//return ResponseEntity.ok(new MessageResponse("Employer logged in successfully!"));
 			
 			
-//			Authentication authentication = authenticationManager.authenticate(
-//					new UsernamePasswordAuthenticationToken(
-//							loginRequest.getEmail(), 
-//							loginRequest.getPassword()
-//							));
-			
-//			SecurityContextHolder.getContext().setAuthentication(authentication);
-			return ResponseEntity.ok(new MessageResponse("Employer logged in successfully!"));
+			  return ResponseEntity.ok(new JwtResponse( jwtToken,
+			  accountPrincipal.getUsername(), role));
+			 
+					
 			
 		}catch (AuthenticationException e){
 			e.getMessage();

@@ -30,14 +30,11 @@ public class SecurityConfig {
 		
 		http.csrf(csrf -> csrf.disable());		
 		http.authorizeHttpRequests((authz) -> authz
-				.anyRequest().permitAll()			
+				.requestMatchers("/signin").permitAll()
+				.requestMatchers("/signup").permitAll()
+				.anyRequest().authenticated()			
 				);
 		
-//		this doesnt Work...
-//		http.authorizeHttpRequests((authz) -> authz
-//		.requestMatchers("/aventix/signup").permitAll()
-//		.anyRequest().authenticated()			
-//		);
 		return http.build();
 	}
 
