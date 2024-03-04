@@ -101,10 +101,7 @@ public class AuthService {
 			//maybe throw exception better than empty string ? 
 			String role = accountPrincipal.getAuthorities().stream() .findFirst().map(item ->
 			item.getAuthority()).orElse("");
-						
-			//return ResponseEntity.ok(new MessageResponse("Employer logged in successfully!"));
-			
-			
+								
 			  return ResponseEntity.ok(new JwtResponse( jwtToken,
 			  accountPrincipal.getUsername(), role));
 			 

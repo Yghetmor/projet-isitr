@@ -1,17 +1,39 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import {ReactiveFormsModule} from "@angular/forms";
 
 import { AppComponent } from './app.component';
+
 import {HttpClientModule} from "@angular/common/http";
+import { PortalComponent } from './portal/portal.component';
+import { AppRoutingModule } from './app-routing.module';
+import {RouterModule, Routes} from "@angular/router";
+import { HomeComponent } from './home/home.component';
+import { SignupComponent } from './signup/signup.component';
 
 
+
+const routes: Routes = [
+  {path: 'home', component: HomeComponent},
+  {path: 'home/portal', component: PortalComponent},
+  {path: 'home/portal/signup', component: SignupComponent},
+  {path: '', redirectTo: 'home', pathMatch: 'full'},
+];
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PortalComponent,
+    HomeComponent,
+    SignupComponent,
+
   ],
   imports: [
     BrowserModule,
+    ReactiveFormsModule,
     HttpClientModule,
+    AppRoutingModule,
+    RouterModule.forRoot(routes),
+
   ],
   providers: [],
   bootstrap: [AppComponent]

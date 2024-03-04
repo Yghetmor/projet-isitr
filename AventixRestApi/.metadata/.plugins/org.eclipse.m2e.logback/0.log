@@ -2858,3 +2858,6 @@
 2024-03-02 18:26:00,762 [Worker-110: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\lea-l\OneDrive\Bureau\PF_INSA\projet-isitr\AventixRestApi\AventixRestApi\src\test\resources
 2024-03-02 18:26:06,239 [Worker-111: Launching AventixRestApi] INFO  o.e.m.i.launch.MavenLaunchDelegate - Run build in "C:\Users\lea-l\OneDrive\Bureau\PF_INSA\projet-isitr\AventixRestApi\AventixRestApi":
 2024-03-02 18:26:06,239 [Worker-111: Launching AventixRestApi] INFO  o.e.m.i.launch.MavenLaunchDelegate -  mvn  -B -Dstyle.color=always spring-boot:run
+2024-03-02 18:53:57,672 [Worker-109: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 1 resource from src\main\resources to target\classes
+2024-03-02 18:53:57,677 [Worker-109: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - Copying 0 resource from src\main\resources to target\classes
+2024-03-02 18:53:57,681 [Worker-109: Building] INFO  o.a.m.s.f.DefaultMavenResourcesFiltering - skip non existing resourceDirectory C:\Users\lea-l\OneDrive\Bureau\PF_INSA\projet-isitr\AventixRestApi\AventixRestApi\src\test\resources
