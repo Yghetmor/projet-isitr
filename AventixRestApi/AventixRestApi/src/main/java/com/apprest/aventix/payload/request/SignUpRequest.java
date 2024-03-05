@@ -14,6 +14,4 @@ public class SignUpRequest {
     private Long noSiren;
     private Role role;
     
-	
-
 }
