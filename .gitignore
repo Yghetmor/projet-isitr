@@ -38,43 +38,42 @@ build/
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # Compiled output
-/dist
-/tmp
-/out-tsc
-/bazel-out
+/AventixApp/dist
+/AventixApp/tmp
+/AventixApp/out-tsc
+/AventixApp/bazel-out
 
 # Node
-/node_modules
-npm-debug.log
-yarn-error.log
+/AventixApp/node_modules
+/AventixApp/npm-debug.log
+/AventixApp/yarn-error.log
 
 # IDEs and editors
-.idea/
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
+/AventixApp/.idea/
+/AventixApp/.project
+/AventixApp/.classpath
+/AventixApp/.c9/
+/AventixApp/*.launch
+/AventixApp/.settings/
+/AventixApp/*.sublime-workspace
 
 # Visual Studio Code
-.vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-.history/*
+/AventixApp/.vscode/*
+!/AventixApp/.vscode/settings.json
+!/AventixApp/.vscode/tasks.json
+!/AventixApp/.vscode/launch.json
+!/AventixApp/.vscode/extensions.json
+/AventixApp/.history/*
 
 # Miscellaneous
-/.angular/cache
-.sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
-testem.log
-/typings
+/AventixApp/.angular/cache
+/AventixApp/.sass-cache/
+/AventixApp/connect.lock
+/AventixApp/coverage
+/AventixApp/libpeerconnection.log
+/AventixApp/testem.log
+/AventixApp/typings
 
 # System files
 .DS_Store
 Thumbs.db
-
