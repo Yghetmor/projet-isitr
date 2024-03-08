@@ -44,7 +44,7 @@ build/
 /AventixApp/bazel-out
 
 # Node
-/AventixApp/node_modules
+**/AventixApp/node_modules/** 
 /AventixApp/npm-debug.log
 /AventixApp/yarn-error.log
 
