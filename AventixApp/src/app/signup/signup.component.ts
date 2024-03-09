@@ -1,6 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import Validation from "./utils/Validation";
+import {AuthService} from "../auth.service";
+import {environment} from "../../environment/environment";
+import {Router} from "@angular/router";
 
 
 @Component({
@@ -11,8 +14,13 @@ import Validation from "./utils/Validation";
 export class SignupComponent implements OnInit{
    signUpForm!: FormGroup;
   formSubmitted: boolean = false
+  successMessage!: string
+  errorMessage!: string
+  private url = `${environment.urlApi}`
 
-  constructor(private fb: FormBuilder){};
+  constructor(private fb: FormBuilder,
+              private authSerivce: AuthService,
+              private router: Router){};
 
   ngOnInit(): void {
     this.signUpForm = this.fb.group({
@@ -32,7 +40,24 @@ export class SignupComponent implements OnInit{
       return;
     }
 
-    console.log(JSON.stringify(this.signUpForm.value, null, 2));
+    const { email, noSiren, password } = this.signUpForm.value;
+
+    this.authSerivce.register(email, password, noSiren).subscribe(
+      (response) => {
+        this.errorMessage = '';
+        this.successMessage = 'Registration successful';
+        setTimeout(() => {
+          this.router.navigate([`home`]);
+          //change to login page when created
+
+        }, 2000);
+      },
+      (error) => {
+        this.errorMessage = error.error.message;
+        console.error('Registration error:', error);
+      }
+    );
+
   }
 
 }

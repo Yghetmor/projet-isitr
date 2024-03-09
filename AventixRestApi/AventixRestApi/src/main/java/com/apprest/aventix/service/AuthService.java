@@ -54,13 +54,13 @@ public class AuthService {
 		if (accountRepository.existsByEmail(signUpRequest.getEmail())) {
 		    return ResponseEntity
 		        .badRequest()
-		        .body(new MessageResponse("Error: Email is already in use!"));
+		        .body(new MessageResponse("Error: Email déjà utilisé!"));
 		}
 		
 		if (employerRepository.existsByNoSiren(signUpRequest.getNoSiren())) {
 		    return ResponseEntity
 			        .badRequest()
-			        .body(new MessageResponse("Error: N°SIREN is already in use!"));
+			        .body(new MessageResponse("Error: N°SIREN déjà utilisé!"));
 			
 		}
 		

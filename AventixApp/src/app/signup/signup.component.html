@@ -3,35 +3,41 @@
     <div class="title">Inscription</div>
     <p>Veuillez remplir les informations suivantes</p>
     <div class="content">
+      <div *ngIf="successMessage" class="successMessage">
+        {{ successMessage }}
+      </div>
+      <div *ngIf="errorMessage !==''" class="errorMessage">
+        {{ errorMessage }}
+      </div>
       <form [formGroup]="signUpForm" (ngSubmit)="onSubmit()">
         <div class="user-details">
 
           <div class="input-box">
             <label for="email">Email</label>
             <input type="text" id="email" formControlName="email" placeholder="Entrez votre adresse e-mail" required>
-            <div *ngIf="formSubmitted && signUpForm.controls['email'].errors?.['required']">Email obligatoire</div>
-            <div *ngIf="formSubmitted && signUpForm.controls['email'].errors?.['email']">Email invalide</div>
+            <div class="error-form" *ngIf="formSubmitted && signUpForm.controls['email'].errors?.['required']">Email obligatoire</div>
+            <div class="error-form" *ngIf="formSubmitted && signUpForm.controls['email'].errors?.['email']">Email invalide</div>
           </div>
 
           <div class="input-box">
             <label for="noSiren">N°SIREN</label>
             <input type="text" id="noSiren" formControlName="noSiren" placeholder="Entrez votre n° SIREN" required>
-            <div *ngIf="formSubmitted && signUpForm.controls['noSiren'].errors?.['required']">N°SIREN obligatoire</div>
+            <div class="error-form" *ngIf="formSubmitted && signUpForm.controls['noSiren'].errors?.['required']">N°SIREN obligatoire</div>
 
           </div>
           <div class="input-box">
             <label for="password">Password</label>
             <input type="password" id="password" formControlName="password" placeholder="Entrez votre mot de passe" required>
-            <div *ngIf="formSubmitted && signUpForm.controls['password'].errors?.['required']">Mot de passe obligatoire</div>
-            <div *ngIf="formSubmitted && signUpForm.controls['password'].errors?.['minlength']">6 caractères minimum</div>
-            <div *ngIf="formSubmitted && signUpForm.controls['password'].errors?.['maxlength']">40 caractères maximum</div>
+            <div class="error-form" *ngIf="formSubmitted && signUpForm.controls['password'].errors?.['required']">Mot de passe obligatoire</div>
+            <div class="error-form" *ngIf="formSubmitted && signUpForm.controls['password'].errors?.['minlength']">6 caractères minimum</div>
+            <div class="error-form" *ngIf="formSubmitted && signUpForm.controls['password'].errors?.['maxlength']">40 caractères maximum</div>
           </div>
 
           <div class="input-box">
             <label for="confirmPassword">Confirmez votre mot de passe</label>
             <input type="password" id="confirmPassword" formControlName="confirmPassword" placeholder="Confirmez votre mot de passe" required>
-            <div *ngIf="formSubmitted && signUpForm.controls['confirmPassword'].errors?.['required']">Confirmation de mot de passe obligatoire</div>
-            <div *ngIf="formSubmitted && signUpForm.controls['confirmPassword'].errors?.['matching']">Les mots de passe ne sont pas identiques</div>
+            <div class="error-form" *ngIf="formSubmitted && signUpForm.controls['confirmPassword'].errors?.['required']">Confirmation de mot de passe obligatoire</div>
+            <div class="error-form" *ngIf="formSubmitted && signUpForm.controls['confirmPassword'].errors?.['matching']">Les mots de passe ne sont pas identiques</div>
           </div>
 
         </div>
