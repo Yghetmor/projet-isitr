@@ -3,6 +3,7 @@ package com.apprest.aventix.service;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -110,7 +111,8 @@ public class AuthService {
 		}catch (AuthenticationException e){
 			e.getMessage();
 			e.printStackTrace();
-			 return ResponseEntity.ok(new MessageResponse("Employer not logged in !"));
+			return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new MessageResponse(e.getMessage()));
+			//return ResponseEntity.ok(new MessageResponse("Employer not logged in !"));
 			
 		}
 		

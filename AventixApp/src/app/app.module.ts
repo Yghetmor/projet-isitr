@@ -10,6 +10,7 @@ import { AppRoutingModule } from './app-routing.module';
 import {RouterModule, Routes} from "@angular/router";
 import { HomeComponent } from './home/home.component';
 import { SignupComponent } from './signup/signup.component';
+import { SigninComponent } from './signin/signin.component';
 
 
 
@@ -17,6 +18,7 @@ const routes: Routes = [
   {path: 'home', component: HomeComponent},
   {path: 'home/portal', component: PortalComponent},
   {path: 'home/portal/signup', component: SignupComponent},
+  {path: 'home/portal/signin', component: SigninComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
 ];
 @NgModule({
@@ -25,6 +27,7 @@ const routes: Routes = [
     PortalComponent,
     HomeComponent,
     SignupComponent,
+    SigninComponent,
 
   ],
   imports: [
