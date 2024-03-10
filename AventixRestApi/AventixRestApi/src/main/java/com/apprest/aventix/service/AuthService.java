@@ -25,7 +25,7 @@ import com.apprest.aventix.payload.response.JwtResponse;
 import com.apprest.aventix.payload.response.MessageResponse;
 import com.apprest.aventix.repository.EmployerRepository;
 import com.apprest.aventix.repository.RoleRepository;
-import com.apprest.aventix.security.jwtUtils;
+import com.apprest.aventix.security.JwtUtils;
 import com.apprest.aventix.repository.AccountRepository;
 
 
@@ -49,7 +49,7 @@ public class AuthService {
 	PasswordEncoder passwordEncoder;
 	
 	@Autowired
-	jwtUtils jwtUtils;
+	JwtUtils jwtUtils;
 	
 	public ResponseEntity<?> registerEmployer(SignUpRequest signUpRequest){
 		if (accountRepository.existsByEmail(signUpRequest.getEmail())) {
@@ -93,7 +93,13 @@ public class AuthService {
 					);
 			
 			Authentication authentication = authenticationManager.authenticate(upaToken);
+			
+			//System.out.println("Logged in as: " + authentication.getName());
+			//System.out.println("Authorities: " + authentication.getAuthorities());
+			
 			SecurityContextHolder.getContext().setAuthentication(authentication);
+			
+			//System.out.println(SecurityContextHolder.getContext());
 			
 			String jwtToken = jwtUtils.generateJwtToken(authentication);
 			

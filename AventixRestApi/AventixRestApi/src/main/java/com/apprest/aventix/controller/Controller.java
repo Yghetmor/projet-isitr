@@ -9,7 +9,9 @@ import jakarta.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,6 +38,17 @@ public class Controller {
     @PostMapping("/signin")
     public ResponseEntity<?> loginEmployer(@Valid @RequestBody LoginRequest loginRequest){
     	return authService.authenticateEmployer(loginRequest);
+    }
+    
+    @GetMapping("employer/home")
+    @PreAuthorize("hasAuthority('ROLE_USER_EMPLOYER')")
+    public String employerAccess() {
+    	return "Employer Content";
+    }
+    
+    @GetMapping("admin/home")
+    public String adminAccess() {
+    	return "Admin Content";
     }
     
     
