@@ -21,7 +21,7 @@ public class Controller {
         if (operationService.processOperation(operation)) {
             return new ResponseEntity<>(HttpStatus.OK);
         } else {
-            return new ResponseEntity<>(HttpStatus.EXPECTATION_FAILED);
+            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
         }
     }
 }
