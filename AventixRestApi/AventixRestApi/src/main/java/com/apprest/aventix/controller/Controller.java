@@ -18,10 +18,6 @@ public class Controller {
 
     @GetMapping("/operation")
     public ResponseEntity<?> processOperation(@RequestBody Operation operation) {
-        if (operationService.processOperation(operation)) {
-            return new ResponseEntity<>(HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.FORBIDDEN);
-        }
+        return operationService.processOperation(operation);
     }
 }
