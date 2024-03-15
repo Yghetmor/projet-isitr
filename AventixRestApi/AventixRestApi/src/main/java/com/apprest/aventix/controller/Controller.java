@@ -36,8 +36,8 @@ public class Controller {
     }
     
     @PostMapping("/signin")
-    public ResponseEntity<?> loginEmployer(@Valid @RequestBody LoginRequest loginRequest){
-    	return authService.authenticateEmployer(loginRequest);
+    public ResponseEntity<?> login(@Valid @RequestBody LoginRequest loginRequest){
+    	return authService.authenticate(loginRequest);
     }
     
     @GetMapping("employer/home")
@@ -47,6 +47,7 @@ public class Controller {
     }
     
     @GetMapping("admin/home")
+    @PreAuthorize("hasAuthority('ROLE_ADMIN')") 
     public String adminAccess() {
     	return "Admin Content";
     }

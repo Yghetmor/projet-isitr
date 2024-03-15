@@ -39,6 +39,7 @@ public class SecurityConfig {
 				.requestMatchers("/signin").permitAll()
 				.requestMatchers("/signup").permitAll()
 				.requestMatchers("/employer/**").hasAuthority("ROLE_USER_EMPLOYER")
+				.requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
 				.anyRequest().authenticated()			
 				);
 		

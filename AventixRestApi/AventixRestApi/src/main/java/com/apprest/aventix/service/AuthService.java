@@ -83,7 +83,7 @@ public class AuthService {
 	}
 	
 	
-	public ResponseEntity<?> authenticateEmployer(LoginRequest loginRequest){
+	public ResponseEntity<?> authenticate(LoginRequest loginRequest){
 		
 		try {
 			UsernamePasswordAuthenticationToken upaToken = 
