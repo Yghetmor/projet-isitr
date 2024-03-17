@@ -45,10 +45,30 @@ export class SigninComponent implements OnInit {
         //todo : must save data and token for current use
 
         this.errorMessage = '';
+
+
+        const role = localStorage.getItem('account_role');
+        console.log(role)
+        let redirectUrl = '';
+
+        switch(role) {
+          case 'ROLE_ADMIN':
+            redirectUrl = '/admin/home';
+            break;
+          case 'ROLE_USER_EMPLOYER':
+            redirectUrl = '/employer/home';
+            break;
+          default:
+            // No matching role found, prepare an error message
+            this.errorMessage = 'Unauthorized: No valid role found for this account.';
+            console.error('Login error: Unauthorized access attempt due to invalid role.');
+            return; // Exit the method to prevent further execution
+        }
+
         this.successMessage = 'Login successful';
 
         setTimeout(() => {
-          this.router.navigate([`home`]);
+          this.router.navigate([redirectUrl]);
         }, 2000);
 
       },

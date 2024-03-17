@@ -23,8 +23,8 @@
             <label for="noSiren">N°SIREN</label>
             <input type="text" id="noSiren" formControlName="noSiren" placeholder="Entrez votre n° SIREN" required>
             <div class="error-form" *ngIf="formSubmitted && signUpForm.controls['noSiren'].errors?.['required']">N°SIREN obligatoire</div>
-
           </div>
+
           <div class="input-box">
             <label for="password">Password</label>
             <input type="password" id="password" formControlName="password" placeholder="Entrez votre mot de passe" required>

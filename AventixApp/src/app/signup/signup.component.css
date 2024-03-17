@@ -2,7 +2,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: calc(100vh - 56px);
+  min-height: calc(100vh - 56px); /* Adjusted to min-height */
   background: linear-gradient(rgba(211, 211, 211, 0.2), rgba(123, 104, 238, 0.2));
   filter: saturate(60%);
 }
@@ -13,7 +13,8 @@
   padding: 25px 30px;
   border-radius: 5px;
   box-shadow: 0 5px 10px rgba(0,0,0,0.15);
-
+  overflow-y: auto; /* Added overflow control */
+  margin: 10px; /* Ensure some space around container */
 }
 
 .error-form{
@@ -40,15 +41,11 @@
   justify-content: space-between;
   margin: 20px 0 12px 0;
 }
+
 form .user-details .input-box{
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   width: 100%;
 }
-
-/*form .user-details .input-box {
-  margin-bottom: 15px;
-  width: calc(100% / 2 - 20px);
-}*/
 
 form .input-box label{
   display: block;
@@ -89,7 +86,7 @@ form .category label{
 
 form .button{
   height: 45px;
-  margin: 35px 0
+  margin: 20px 0
 }
 form .button button{
   height: 100%;

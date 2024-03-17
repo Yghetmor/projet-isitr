@@ -47,7 +47,7 @@ public class AventixRestApiApplication implements CommandLineRunner{
 		roleRepository.save(r2);
 		roleRepository.save(r3);
 		
-		Account adminAccount = new Account("admin@admin.com",passwordEncoder.encode("admin"));
+		Account adminAccount = new Account("admin@admin.com",passwordEncoder.encode("adminadmin"));
 		adminAccount.setRole(r3);
 		Account employerAccount = new Account("e@f.com", passwordEncoder.encode("employer"));
 		employerAccount.setRole(r1);
