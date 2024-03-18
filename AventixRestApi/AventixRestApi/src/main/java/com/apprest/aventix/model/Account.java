@@ -1,6 +1,5 @@
 package com.apprest.aventix.model;
 
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -19,9 +18,9 @@ import lombok.RequiredArgsConstructor;
 	uniqueConstraints = {
 		@UniqueConstraint(columnNames = "email")
 	})
-@Data
-@RequiredArgsConstructor
-@NoArgsConstructor
+//@Data
+//@RequiredArgsConstructor
+//@NoArgsConstructor
 public class Account {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -37,7 +36,15 @@ public class Account {
 	@ManyToOne
 	@JoinColumn(name = "role_id")
 	private Role role;
-	
+  
+  public Account() {
+		
+	}
+
+	public Account(String email, String password) {
+		this.email = email;
+		this.password = password;
+	}
 
 
 
@@ -89,18 +96,6 @@ public class Account {
 	}
 
 
-/*
-	public Account() {
-		
-	}
-
-*/	
-
-	public Account(String email, String password) {
-		this.email = email;
-		this.password = password;
-	}
-	
 	
 
 

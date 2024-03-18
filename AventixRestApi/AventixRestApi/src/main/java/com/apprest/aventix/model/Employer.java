@@ -1,6 +1,5 @@
 package com.apprest.aventix.model;
 
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,8 +11,8 @@ import lombok.Data;
 
 @Entity
 @Table(name = "employers")
-@Data
-@AllArgsConstructor
+//@Data
+//@AllArgsConstructor
 public class Employer {
 	
 	@Id
@@ -24,6 +23,17 @@ public class Employer {
 	
 	@OneToOne
 	private Account account;
+  
+  public Employer() {
+
+		
+	}
+  
+  public Employer(Long noSiren, Account account) {
+		this.noSiren=noSiren;
+		this.account=account;
+	}
+  
 	
 	
 	
@@ -63,16 +73,9 @@ public class Employer {
 
 	
 
-	public Employer() {
-
-		
-	}
 
 
 
-	public Employer(Long noSiren, Account account) {
-		this.noSiren=noSiren;
-		this.account=account;
-	}
+
 
 }

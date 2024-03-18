@@ -18,37 +18,26 @@ import lombok.RequiredArgsConstructor;
 
 @Entity
 @Table(name = "roles")
-@Data
-@NoArgsConstructor
-@RequiredArgsConstructor
+//@Data
+//@NoArgsConstructor
+//@RequiredArgsConstructor
 public class Role {
 	@Id
 	@GeneratedValue(strategy =GenerationType.IDENTITY)
-	private int id;
-
-
+	private Long id;
+	
 	@NonNull
 	@Enumerated(EnumType.STRING)
 	private ERole roleType;
 	
 	@OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
 	private List<Account> accounts;
-	
-	
 
-
-	
-/*
 	public Role() {
 		
 	}
 
-*/
-
-	public Role(int id2, ERole roleUserEmployer) {
-		this.id = id2;
-		this.roleType = roleUserEmployer;
-	}
+// rajouter constructeur 2 args 
 
 
 
@@ -86,8 +75,7 @@ public class Role {
 		this.accounts = accounts;
 	}
 
+*/
 
-
-	
 	
 }
