@@ -46,7 +46,7 @@ AventixApp/out-tsc
 AventixApp/bazel-out
 
 # Node
-AventixApp/node_modules
+node_modules
 
 # IDEs and editors
 AventixApp/.idea/
@@ -58,21 +58,21 @@ AventixApp/.settings/
 AventixApp/*.sublime-workspace
 
 # Visual Studio Code
-AventixApp/.vscode/*
-!/AventixApp/.vscode/settings.json
-!/AventixApp/.vscode/tasks.json
-!/AventixApp/.vscode/launch.json
-!/AventixApp/.vscode/extensions.json
-AventixApp/.history/*
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
 
 # Miscellaneous
-AventixApp/.angular/cache
-AventixApp/.sass-cache/
-AventixApp/connect.lock
-AventixApp/coverage
-AventixApp/libpeerconnection.log
-AventixApp/testem.log
-AventixApp/typings
+.angular/cache
+.sass-cache/
+connect.lock
+coverage
+libpeerconnection.log
+testem.log
+typings
 
 # System files
 .DS_Store
