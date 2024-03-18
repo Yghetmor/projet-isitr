@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion Des Commandes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            display: inline-block;
+            text-align: left;
+            margin-top: 20px;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        input {
+            padding: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Création de la Commande</h1>
+    <br />
+
+    <form th:action="@{/commande}" method="POST" th:object="${commande}">
+    <p>Nombre de cartes: <input type="number" th:field="*{nbCarte}" /></p>
+    <div th:if="${#fields.hasErrors('nbCarte')}" th:errors="*{nbCarte}"></div>
+    
+    <p>Taux de Participation: <input type="number" th:field="*{tauxParticipation}" /></p>
+    <div th:if="${#fields.hasErrors('tauxParticipation')}" th:errors="*{tauxParticipation}"></div>
+    
+    <input type="submit" value="OK">
+    </form>
+
+</body>
+
+</html>

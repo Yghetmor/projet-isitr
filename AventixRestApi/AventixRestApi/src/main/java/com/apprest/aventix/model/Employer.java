@@ -11,8 +11,8 @@ import lombok.Data;
 
 @Entity
 @Table(name = "employers")
-@Data
-@AllArgsConstructor
+//@Data
+//@AllArgsConstructor
 public class Employer {
 	
 	@Id
@@ -23,10 +23,59 @@ public class Employer {
 	
 	@OneToOne
 	private Account account;
-	
-	public Employer(Long noSiren, Account account) {
+  
+  public Employer() {
+
+		
+	}
+  
+  public Employer(Long noSiren, Account account) {
 		this.noSiren=noSiren;
 		this.account=account;
 	}
+  
+	
+	
+	
+	public Long getNoSiren() {
+		return noSiren;
+	}
+
+
+
+	public void setNoSiren(Long noSiren) {
+		this.noSiren = noSiren;
+	}
+
+
+
+	public Account getAccount() {
+		return account;
+	}
+
+
+
+	public void setAccount(Account account) {
+		this.account = account;
+	}
+
+
+
+	public Long getId() {
+		return id;
+	}
+
+
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	
+
+
+
+
+
 
 }
