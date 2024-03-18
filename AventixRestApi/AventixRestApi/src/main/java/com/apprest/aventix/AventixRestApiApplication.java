@@ -1,9 +1,13 @@
 package com.apprest.aventix;
 
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Profile;
+import org.springframework.core.env.Environment;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.apprest.aventix.model.Account;
@@ -18,6 +22,10 @@ import com.apprest.aventix.repository.RoleRepository;
 
 @SpringBootApplication
 public class AventixRestApiApplication implements CommandLineRunner{
+	
+	@Autowired
+	private Environment env;
+	
 	@Autowired
 	EmployerRepository employerRepository;
 	
@@ -38,8 +46,13 @@ public class AventixRestApiApplication implements CommandLineRunner{
 	}
 
 	@Override
+	@Profile("!test")
 	public void run(String... args) throws Exception {
 		// TODO Auto-generated method stub
+		
+        if (Arrays.asList(env.getActiveProfiles()).contains("test")) {
+            return; // Skip execution for tests
+        }
 		Role r1 = new Role(ERole.ROLE_USER_EMPLOYER);
 		Role r2 = new Role(ERole.ROLE_MODERATOR);
 		Role r3 = new Role(ERole.ROLE_ADMIN);
