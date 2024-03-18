@@ -25,12 +25,69 @@ public class Role {
 	@Id
 	@GeneratedValue(strategy =GenerationType.IDENTITY)
 	private int id;
-	
+
+
 	@NonNull
 	@Enumerated(EnumType.STRING)
 	private ERole roleType;
 	
 	@OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
-	private List<User> users;
+	private List<Account> accounts;
+	
+	
+
+
+	
+/*
+	public Role() {
+		
+	}
+
+*/
+
+	public Role(int id2, ERole roleUserEmployer) {
+		this.id = id2;
+		this.roleType = roleUserEmployer;
+	}
+
+
+
+	public int getId() {
+		return id;
+	}
+
+
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+
+
+	public ERole getRoleType() {
+		return roleType;
+	}
+
+
+
+	public void setRoleType(ERole roleType) {
+		this.roleType = roleType;
+	}
+
+
+
+	public List<Account> getAccounts() {
+		return accounts;
+	}
+
+
+
+	public void setAccounts(List<Account> accounts) {
+		this.accounts = accounts;
+	}
+
+
+
+	
 	
 }
