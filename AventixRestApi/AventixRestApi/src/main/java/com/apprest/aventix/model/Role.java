@@ -32,22 +32,28 @@ public class Role {
 	
 	@OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
 	private List<Account> accounts;
+	
 
-	public Role() {
-		
+	public Role() {		
+	}
+	
+	public Role(ERole roleType) {
+		super();
+		this.roleType = roleType;
 	}
 
-// rajouter constructeur 2 args 
 
 
 
-	public int getId() {
+
+
+	public long getId() {
 		return id;
 	}
 
 
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
@@ -75,7 +81,7 @@ public class Role {
 		this.accounts = accounts;
 	}
 
-*/
+
 
 	
 }

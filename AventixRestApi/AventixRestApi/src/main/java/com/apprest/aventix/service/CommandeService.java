@@ -57,7 +57,7 @@ public class CommandeService {
 		c.setDateCommande(dateJour);
 		c.setStatut("En cours");
 		
-		Role userRole = new Role(1, ERole.ROLE_USER_EMPLOYER);
+		Role userRole = new Role(ERole.ROLE_USER_EMPLOYER);
 		Account account = new Account("employeur1@rasengan.com", "motdepasse1");
 		account.setRole(userRole);
 		account.setId(1L);
