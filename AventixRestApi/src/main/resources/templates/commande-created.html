@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Gestion Des Commandes</title>
+</head>
+
+<body>
+	
+	
+	<p>
+		Commande créé avec succes 
+	</p>
+	
+	<a th:href="@{/commande/client/{clientId}(clientId=${commande.utilisateur.id})}">Retour aux commandes</a>
+
+</body>
+
+
+
+
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+	<meta charset="UTF-8">
+	<title>Gestion Des Commandes</title>
+</head>
+
+<body>
+	<h1>Nouveau statut de la commande</h1>
+	<br/>
+
+		
+		<table border="2">
+			<tr>
+				<td th:text="${commande.numeroCommande}"></td>
+				<td th:text="${commande.nbCarte}"></td>
+				<td th:text="${commande.tauxParticipation}"></td>
+				<td th:text="${commande.dateCommande}"></td>
+				<td th:text="${commande.statut}"></td>
+			
+			</tr>
+		</table>
+	
+	</ul>
+
+
+<li><a href="/invoise/commande/admin/home">Retour a la Page de Commandes</a></li>
+
+</body>
+
+
+
+
+</html>

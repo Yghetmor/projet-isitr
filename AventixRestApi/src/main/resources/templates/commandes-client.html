@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste des Commandes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        #commandesContainer {
+            margin: 20px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        span {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>Actions Disponibles :</h2>
+    <ul>
+        <li><a href="/invoise/commande/create-form">Ajout De Commande</a></li>
+    </ul>
+
+<h1>Liste des Commandes</h1>
+
+<!-- Affichage du noSiren et de l'email -->
+<p>Email: <span th:text="${commandesList[0].utilisateur.account.email}"></span></p>
+<p>N° Siren: <span th:text="${commandesList[0].utilisateur.noSiren}"></span></p>
+
+<div id="commandesContainer">
+    <table>
+        <tr>
+            <th>Commande Number</th>
+            <th>Nb Carte</th>
+            <th>Taux Participation</th>
+            <th>Date Commande</th>
+            <th>Statut</th>
+            <th>Action</th>
+        </tr>
+
+        <tr th:each="commande : ${commandesList}">
+            <td th:text="${commande.numeroCommande}"></td>
+            <td th:text="${commande.nbCarte}"></td>
+            <td th:text="${commande.tauxParticipation}"></td>
+            <td th:text="${commande.dateCommande}"></td>
+            <td th:text="${commande.statut}"></td>
+            <td>
+                <!-- Affichage du lien en fonction du statut -->
+                <span th:if="${commande.statut == 'Confirmer'}">
+                    <a th:href="@{/commande/{number}(number=${commande.numeroCommande})}">Confirmer la Livraison</a>
+                </span>
+                <span th:if="${commande.statut == 'En cours'}">
+                    <a th:href="@{/commande/delete/{number}(number=${commande.numeroCommande})}">Annuler la commande</a>
+                </span>
+            </td>
+        </tr>
+    </table>
+</div>
+
+</body>
+</html>
