@@ -1,5 +1,6 @@
 package com.apprest.aventix.controller;
 
+import com.apprest.aventix.model.Commande;
 import com.apprest.aventix.payload.request.LoginRequest;
 import com.apprest.aventix.payload.request.SignUpRequest;
 import com.apprest.aventix.service.AuthService;
@@ -61,6 +62,16 @@ public class Controller {
 	public ResponseEntity<?> findCommandsByEmployerId(@PathVariable long id) {
 		return commandeService.findById(id);
 
+	}
+	
+	@PostMapping("/commande")
+	public ResponseEntity<?> addCommand(@RequestBody Commande commande){
+		return commandeService.addOne(commande);	
+	}
+	
+	@PostMapping("/commande/{id}")
+	public ResponseEntity<?> modifyCommand(@PathVariable int id, @RequestBody Commande commande){
+		return commandeService.editOne(id, commande);
 	}
 	
 	
