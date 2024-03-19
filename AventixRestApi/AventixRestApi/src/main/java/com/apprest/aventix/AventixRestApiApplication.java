@@ -1,6 +1,9 @@
 package com.apprest.aventix;
 
+import java.sql.Timestamp;
 import java.util.Arrays;
+import java.util.Date;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -12,11 +15,14 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.apprest.aventix.model.Account;
 import com.apprest.aventix.model.Admin;
+import com.apprest.aventix.model.Commande;
 import com.apprest.aventix.model.ERole;
 import com.apprest.aventix.model.Employer;
+import com.apprest.aventix.model.Reclamation;
 import com.apprest.aventix.model.Role;
 import com.apprest.aventix.repository.AccountRepository;
 import com.apprest.aventix.repository.AdminRepository;
+import com.apprest.aventix.repository.CommandeRepository;
 import com.apprest.aventix.repository.EmployerRepository;
 import com.apprest.aventix.repository.RoleRepository;
 
@@ -25,6 +31,9 @@ public class AventixRestApiApplication implements CommandLineRunner{
 	
 	@Autowired
 	private Environment env;
+	
+	@Autowired
+	CommandeRepository commandeRepository;
 	
 	@Autowired
 	EmployerRepository employerRepository;
@@ -73,6 +82,13 @@ public class AventixRestApiApplication implements CommandLineRunner{
 		
 		Admin admin = new Admin(adminAccount);
 		adminRepository.save(admin);
+		
+		// insert 1 command in DB
+		
+		Timestamp timestamp = new Timestamp(new Date().getTime());		
+		Commande c1 = new Commande(50,10,timestamp, "en cours",employer,null);
+		commandeRepository.save(c1);
+		
 				
 	}
 

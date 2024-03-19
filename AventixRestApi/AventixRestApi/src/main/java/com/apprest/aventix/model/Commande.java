@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.validation.annotation.Validated;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.Column;
@@ -23,7 +24,7 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 
 @Entity
-@Table(name = "COMMANDE")
+@Table(name = "commands")
 @Validated
 public class Commande {
     @Id
@@ -49,7 +50,7 @@ public class Commande {
 
     @ManyToOne
     @JoinColumn(name = "ID_EMPLOYER", referencedColumnName = "id")
-    @JsonManagedReference
+    @JsonIgnoreProperties({"noSiren","account"})
     private Employer utilisateur;
 
     @OneToMany(mappedBy = "commande")

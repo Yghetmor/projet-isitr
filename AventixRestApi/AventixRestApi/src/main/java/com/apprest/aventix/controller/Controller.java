@@ -3,6 +3,7 @@ package com.apprest.aventix.controller;
 import com.apprest.aventix.payload.request.LoginRequest;
 import com.apprest.aventix.payload.request.SignUpRequest;
 import com.apprest.aventix.service.AuthService;
+import com.apprest.aventix.service.CommandeService;
 import com.apprest.aventix.service.OperationService;
 
 import jakarta.validation.Valid;
@@ -12,6 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,13 +24,20 @@ import org.springframework.web.bind.annotation.RestController;
 public class Controller {
     private final OperationService operationService;
     
+    // Appel des services 
+    
     @Autowired
     private AuthService authService;
+    
+    @Autowired
+    private CommandeService commandeService;
 
     @Autowired
     public Controller(OperationService operationService) {
         this.operationService = operationService;
     }
+    
+    // Partie authentication
       
     @PostMapping("/signup")
     public ResponseEntity<?> registerEmployer(@Valid @RequestBody SignUpRequest signUpRequest){
@@ -39,6 +48,26 @@ public class Controller {
     public ResponseEntity<?> login(@Valid @RequestBody LoginRequest loginRequest){
     	return authService.authenticate(loginRequest);
     }
+    
+    // Partie commande 
+    
+    @GetMapping("/commande")
+    public ResponseEntity<?> findAllCommands(){
+    	return commandeService.findAll();
+
+    }
+    
+	@GetMapping("/commande/{id}")
+	public ResponseEntity<?> findCommandsByEmployerId(@PathVariable long id) {
+		return commandeService.findById(id);
+
+	}
+	
+	
+    
+    
+    
+   // Test  
     
     @GetMapping("employer/home")
     @PreAuthorize("hasAuthority('ROLE_USER_EMPLOYER')")
