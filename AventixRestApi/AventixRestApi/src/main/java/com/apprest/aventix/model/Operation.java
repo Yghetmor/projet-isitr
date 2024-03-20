@@ -18,6 +18,7 @@ public class Operation implements Serializable {
     private Date date;
     private boolean isValid;
 
+    //Constructors
     public Operation() {
     }
 
@@ -29,6 +30,7 @@ public class Operation implements Serializable {
         this.isValid = isValid;
     }
 
+    //Getters and setters
     public Long getId() {
         return id;
     }

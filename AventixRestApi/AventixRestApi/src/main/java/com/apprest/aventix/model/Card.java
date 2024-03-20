@@ -20,6 +20,7 @@ public class Card implements Serializable {
     private BigDecimal dailyBalance;
     private State state;
 
+    //Constructors
     public Card() {
     }
 
@@ -29,6 +30,7 @@ public class Card implements Serializable {
         this.state = state;
     }
 
+    //Getters and setters
     public Long getId() {
         return id;
     }

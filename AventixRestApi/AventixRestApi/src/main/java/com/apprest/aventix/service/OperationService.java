@@ -23,15 +23,19 @@ public class OperationService {
         this.operationDao = operationDao;
     }
 
+    //Method used to process an Operation with all checks
     public ResponseEntity<?> processOperation(Operation operation) {
+        //Check if operation is valid
         if (operation.getCardNo() == null || operation.getMerchantNo() == null || operation.getAmount() == null || operation.getDate() == null) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
+        //Find card in DB
         Optional<Card> optionCard = cardDao.findCardById(operation.getCardNo());
         if (optionCard.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } else {
             Card card = optionCard.get();
+            //Validate operation based on card state
             if (card.getState() == Card.State.GOOD && card.getBalance().compareTo(operation.getAmount()) >= 0 && card.getDailyBalance().compareTo(operation.getAmount()) >= 0) {
                 operation.setValid(true);
                 try {
