@@ -12,3 +12,9 @@ Ici, est utilisé :
 - l'IDE Webstorm pour le front (Angular)
 - l'IDE Eclipse pour le back (Spring Boot)
 
+## Bonnes pratiques GIT et GITHUB
+
+La branche main devrait comporter les répertoires necessaires (controller, dao, model et service)
+Pour commencer à travailler :
+- Créer une nouvelle branche à partir de la branche main avec le nom de la fonction sur laquelle vous travaillez
+- Ne faire que des commits/push sur la nouvelle branche créée
