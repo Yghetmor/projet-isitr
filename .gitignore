@@ -33,29 +33,29 @@ build/
 ### VS Code ###
 .vscode/
 
+.metadata/
+
 ################### Angular #########################
 
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # Compiled output
-/dist
-/tmp
-/out-tsc
-/bazel-out
+AventixApp/dist
+AventixApp/tmp
+AventixApp/out-tsc
+AventixApp/bazel-out
 
 # Node
-/node_modules
-npm-debug.log
-yarn-error.log
+node_modules
 
 # IDEs and editors
-.idea/
-.project
-.classpath
-.c9/
-*.launch
-.settings/
-*.sublime-workspace
+AventixApp/.idea/
+AventixApp/.project
+AventixApp/.classpath
+AventixApp/.c9/
+AventixApp/*.launch
+AventixApp/.settings/
+AventixApp/*.sublime-workspace
 
 # Visual Studio Code
 .vscode/*
@@ -66,13 +66,13 @@ yarn-error.log
 .history/*
 
 # Miscellaneous
-/.angular/cache
+.angular/cache
 .sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
+connect.lock
+coverage
+libpeerconnection.log
 testem.log
-/typings
+typings
 
 # System files
 .DS_Store
@@ -80,3 +80,4 @@ Thumbs.db
 
 # metadata
 .metadata/
+Thumbs.db

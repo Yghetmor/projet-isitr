@@ -11,6 +11,8 @@ import java.util.Optional;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 
+import com.apprest.aventix.repository.CardDao;
+
 @Service
 @Transactional
 public class OperationService {

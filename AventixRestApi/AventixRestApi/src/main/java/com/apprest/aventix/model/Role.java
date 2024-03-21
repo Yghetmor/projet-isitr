@@ -18,19 +18,70 @@ import lombok.RequiredArgsConstructor;
 
 @Entity
 @Table(name = "roles")
-@Data
-@NoArgsConstructor
-@RequiredArgsConstructor
+//@Data
+//@NoArgsConstructor
+//@RequiredArgsConstructor
 public class Role {
 	@Id
 	@GeneratedValue(strategy =GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	
 	@NonNull
 	@Enumerated(EnumType.STRING)
 	private ERole roleType;
 	
 	@OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
-	private List<User> users;
+	private List<Account> accounts;
+	
+
+	public Role() {		
+	}
+	
+	public Role(ERole roleType) {
+		super();
+		this.roleType = roleType;
+	}
+
+
+
+
+
+
+	public long getId() {
+		return id;
+	}
+
+
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+
+
+	public ERole getRoleType() {
+		return roleType;
+	}
+
+
+
+	public void setRoleType(ERole roleType) {
+		this.roleType = roleType;
+	}
+
+
+
+	public List<Account> getAccounts() {
+		return accounts;
+	}
+
+
+
+	public void setAccounts(List<Account> accounts) {
+		this.accounts = accounts;
+	}
+
+
+
 	
 }

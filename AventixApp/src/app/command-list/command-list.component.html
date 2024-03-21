@@ -1,0 +1,16 @@
+<div class="main">
+  <h2>Liste des commandes</h2>
+  <div *ngIf="commands.length < 1">
+    Pas de commandes
+  </div>
+  <div *ngIf="commands.length > 0">
+    <div class="container">
+      <app-command *ngFor="let c of commands" [command]="c" routerLink="{{c.numeroCommande}}"></app-command>
+      <div class="button">
+        <button type="submit" class="btn btn-outline-warning" routerLink="./add">Ajouter une commande</button>
+        <span><button type="button" class="btn btn-outline-warning" routerLink="../home">Retour</button></span>
+      </div>
+    </div>
+  </div>
+
+</div>

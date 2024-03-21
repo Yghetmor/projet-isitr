@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion Des Commandes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        h2 {
+            color: #555;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .details {
+            display: block; /* Les détails sont toujours visibles */
+        }
+
+        .information {
+            margin-top: 10px;
+            padding: 10px;
+            background-color: #f9f9f9;
+        }
+
+        /* Ajustement de la largeur des cellules "Nombre de Cartes" et "Numéro de Commande" */
+        .small-cell {
+            width: 80px;
+        }
+
+        .medium-cell {
+            width: 120px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Bienvenue Dans La Page de Gestion Des Commandes</h1>
+    <br />
+
+
+    <h2>Liste des Commandes :</h2>
+    <table>
+        <thead>
+            <tr>
+                <th class="small-cell">Numéro de Commande</th>
+                <th class="small-cell">Nombre de Cartes</th>
+                <th>Statut</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="commande: ${commandes}">
+                <td class="small-cell" th:text="${commande.numeroCommande}"></td>
+                <td class="small-cell" th:text="${commande.nbCarte}"></td>
+                <td th:text="${commande.statut}"></td>
+                <td>
+                    <div class="details" id="details-${commande.numeroCommande}">
+                        <p>Date de Commande: <span th:text="${commande.dateCommande}"></span></p>
+                        <p>Taux de Participation: <span th:text="${commande.tauxParticipation}"></span></p>
+                        
+                        <!-- Affichage de la case "Information" -->
+                        <div class="information">
+                            <p>Email du client: <span th:text="${commande.utilisateur.account.email}"></span></p>
+                            <p>Siren du client: <span th:text="${commande.utilisateur.noSiren}"></span></p>
+                        </div>
+                        
+                        <!-- Affichage du lien en fonction du statut -->
+                        <span th:if="${commande.statut == 'En cours'}">
+                            <a th:href="@{/commande/admin/{number}(number=${commande.numeroCommande})}">Confirmer la Commande</a>
+                        </span>
+                        
+                        <a th:href="@{/commande/client/{clientId}(clientId=${commande.utilisateur.id})}">Afficher tous les commandes du client</a>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</body>
+
+</html>
