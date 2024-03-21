@@ -7,6 +7,7 @@ import java.util.List;
 
 import org.springframework.validation.annotation.Validated;
 
+import com.apprest.aventix.service.CommandeService.EStatut;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
@@ -46,7 +47,7 @@ public class Commande {
     private Timestamp dateCommande;
 
     @Column(name = "STATUT", length = 20)
-    private String statut;
+    private EStatut statut;
 
     @ManyToOne
     @JoinColumn(name = "ID_EMPLOYER", referencedColumnName = "id")
@@ -65,11 +66,11 @@ public class Commande {
 		this.nbCarte = 0;
 		this.tauxParticipation = 0;
 		this.dateCommande = null;
-		this.statut = "";
+		this.statut = EStatut.EN_COURS;
 
 	}
 
-	public Commande(int nbCarte, int tauxParticipation, Timestamp dateCommande, String statut, Employer utilisateur,
+	public Commande(int nbCarte, int tauxParticipation, Timestamp dateCommande, EStatut statut, Employer utilisateur,
 			List<Reclamation> reclamations) {
 		this.nbCarte = nbCarte;
 		this.tauxParticipation = tauxParticipation;
@@ -112,12 +113,13 @@ public class Commande {
 	public void setDateCommande(Timestamp dateCommande) {
 		this.dateCommande = dateCommande;
 	}
+	
 
-	public String getStatut() {
+	public EStatut getStatut() {
 		return statut;
 	}
 
-	public void setStatut(String statut) {
+	public void setStatut(EStatut statut) {
 		this.statut = statut;
 	}
 
@@ -136,6 +138,16 @@ public class Commande {
 	public void setReclamations(List<Reclamation> reclamations) {
 		this.reclamations = reclamations;
 	}
+
+	@Override
+	public String toString() {
+		return "Commande [numeroCommande=" + numeroCommande + ", nbCarte=" + nbCarte + ", tauxParticipation="
+				+ tauxParticipation + ", dateCommande=" + dateCommande + ", statut=" + statut + ", utilisateur="
+				+ utilisateur + ", reclamations=" + reclamations + "]";
+	}
+	
+	
+
 
 
     

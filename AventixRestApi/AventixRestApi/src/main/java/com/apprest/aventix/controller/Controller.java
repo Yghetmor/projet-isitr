@@ -62,7 +62,7 @@ public class Controller {
     }
     
 	@GetMapping("/commande/{id}")
-	public ResponseEntity<?> findCommandsByEmployerId(@PathVariable long id) {
+	public ResponseEntity<?> findCommandById(@PathVariable long id) {
 		return commandeService.findById(id);
 
 	}
@@ -84,20 +84,19 @@ public class Controller {
     
     // Nour
     
-	 @PutMapping("/confirm/{numCommande}")
-	    public ResponseEntity<?> confirmCommandeByAdmin(@PathVariable long numCommande) {
-	        return commandeService.confirmByAdmin(numCommande);
-	    }
-		
-	    @PutMapping("/livrer/{numCommande}")
-	    public ResponseEntity<Commande> confirmCommandeByNumberByEmployer(@PathVariable long numCommande) {
-	        return commandeService.confirmByNumber(numCommande);
-	    }
+    @PutMapping("/confirm/{numCommande}")
+    public ResponseEntity<?> confirmCommandeByAdmin(@PathVariable long numCommande) {
+    	return commandeService.confirmByAdmin(numCommande);
+    }
 
-	    @PutMapping("/annuler/{numCommande}")
-	    public ResponseEntity<Commande> deleteCommande(@PathVariable long numCommande) {
-	        return commandeService.deleteOne(numCommande);
-	    }
+    @PutMapping("/livrer/{numCommande}") public ResponseEntity<Commande>
+    confirmCommandeByNumberByEmployer(@PathVariable long numCommande) { return
+    		commandeService.confirmByNumber(numCommande); }
+
+    @PutMapping("/annuler/{numCommande}") public ResponseEntity<Commande>
+    deleteCommande(@PathVariable long numCommande) { return
+    		commandeService.deleteOne(numCommande); }
+		 
 		
    // Test  
     

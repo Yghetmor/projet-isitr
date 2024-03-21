@@ -25,6 +25,7 @@ import com.apprest.aventix.repository.AdminRepository;
 import com.apprest.aventix.repository.CommandeRepository;
 import com.apprest.aventix.repository.EmployerRepository;
 import com.apprest.aventix.repository.RoleRepository;
+import com.apprest.aventix.service.CommandeService.EStatut;
 
 @SpringBootApplication
 public class AventixRestApiApplication implements CommandLineRunner{
@@ -86,11 +87,11 @@ public class AventixRestApiApplication implements CommandLineRunner{
 		// insert 1 command in DB
 		
 		Timestamp timestamp = new Timestamp(new Date().getTime());		
-		Commande c1 = new Commande(50,10,timestamp, "en cours",employer,null);
+		Commande c1 = new Commande(50,10,timestamp, EStatut.EN_COURS,employer,null);
 		commandeRepository.save(c1);
 		
 		timestamp = new Timestamp((new Date().getTime())-60*60*1000);		
-		Commande c2 = new Commande(100,5,timestamp, "en cours",employer,null);
+		Commande c2 = new Commande(100,5,timestamp, EStatut.EN_COURS,employer,null);
 		commandeRepository.save(c2);
 		
 				
