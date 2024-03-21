@@ -1,0 +1,39 @@
+<div class="main">
+  <div class="detail">
+    <h2>Détails de la commande N°{{command?.numeroCommande}}</h2>
+
+    <div class="card w-25">
+      <h4 class="card-header">{{klass?.name}}</h4>
+      <div class="card-body">
+        <div class="card-text">
+          Professeur principal : {{klass?.principalTeacher?.lastName}} {{klass?.principalTeacher?.firstName}}
+        </div>
+      </div>
+      <div class="card-footer">
+        <button class="btn btn-danger" (click)="open(content)">Supprimer la classe</button>
+      </div>
+    </div>
+    <br>
+    <div>
+      <button type="button" class="btn btn-outline-info" routerLink="../">Retour vue classes</button>
+    </div>
+  </div>
+  <ng-template #content let-modal>
+    <div class="modal-header">
+      <h4 class="modal-title" id="modal-basic-title">Verification pour suppression</h4>
+    </div>
+    <div class="modal-body">
+      <form>
+        <div class="mb-3">
+          Voulez-vous vraiment supprimer la classe : {{klass?.name}}
+        </div>
+      </form>
+    </div>
+    <div class="modal-footer">
+      <button type="button" class="btn btn-outline-dark" (click)="deleteById()">OUI</button>
+      <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">NON</button>
+    </div>
+  </ng-template>
+
+  <app-calendar></app-calendar>
+</div>

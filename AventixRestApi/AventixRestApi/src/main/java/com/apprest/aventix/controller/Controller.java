@@ -9,6 +9,8 @@ import com.apprest.aventix.service.OperationService;
 
 import jakarta.validation.Valid;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -74,9 +76,11 @@ public class Controller {
 		return commandeService.editOne(id, commande);
 	}
 	
-	
-    
-    
+    @GetMapping("/employer/{employerId}")
+    public ResponseEntity<?> findCommandsByEmployerId(@PathVariable Long employerId) {
+        return commandeService.findByEmployerId(employerId);
+    }
+	    
     
    // Test  
     

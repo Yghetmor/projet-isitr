@@ -4,6 +4,7 @@ import {environment} from "../environment/environment";
 import { catchError, tap } from 'rxjs/operators';
 import {BehaviorSubject, Observable} from "rxjs";
 import {Router} from "@angular/router";
+import {JwtHelperService} from "@auth0/angular-jwt";
 //import {catchError, Observable} from 'rxjs';
 
 @Injectable({
@@ -19,7 +20,8 @@ export class AuthService {
   private roleSource = new BehaviorSubject<string | null>(this.getAccountRole());
   currentRole = this.roleSource.asObservable();
 
-  constructor(private http: HttpClient, private router: Router) { }
+  constructor(private http: HttpClient, private router: Router,
+              private jwtHelper: JwtHelperService) { }
 
   register(email: string, password: string, noSiren: number):Observable<any>{
     const role = {
@@ -52,6 +54,9 @@ export class AuthService {
             localStorage.setItem(('access_token'), response.accessToken);
             localStorage.setItem(('account_role'), response.roles);
 
+            console.log("idEmpl from response:", response.idEmpl);
+            localStorage.setItem(('employer_id'),response.idEmpl);
+
             this.roleSource.next(localStorage.getItem('account_role'));
           }
         }),
@@ -81,6 +86,16 @@ export class AuthService {
       return false;
     }
     return true;
+  }
+
+
+  // just to check token form
+  decodeToken() {
+    const token = localStorage.getItem('access_token');
+    if (token) {
+      const decodedToken = this.jwtHelper.decodeToken(token);
+      console.log(decodedToken);
+    }
   }
 
 }

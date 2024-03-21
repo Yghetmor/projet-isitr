@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import {ReactiveFormsModule} from "@angular/forms";
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { AppComponent } from './app.component';
 
@@ -20,7 +21,16 @@ import { DefaultBoardComponent } from './board/default-board/default-board.compo
 import {AuthGuard} from "./guards/auth.guard";
 import {RoleGuard} from "./guards/role.guard";
 import {NoRoleGuard} from "./guards/no-role.guard";
+import { CommandListComponent } from './command-list/command-list.component';
+import { CommandComponent } from './command/command.component';
 
+import {JwtModule} from "@auth0/angular-jwt";
+
+import { CommandDetailsComponent } from './command-details/command-details.component';
+
+export function tokenGetter() {
+  return localStorage.getItem('access_token');
+}
 
 
 const routes: Routes = [
@@ -29,7 +39,11 @@ const routes: Routes = [
   {path: 'home/portal/signup', component: SignupComponent, canActivate: [NoRoleGuard]},
   {path: 'home/portal/signin', component: SigninComponent, canActivate: [NoRoleGuard]},
   {path: 'employer/home', component: HomeEmployerComponent,canActivate: [AuthGuard, RoleGuard], data: { requiredRoles: ['ROLE_USER_EMPLOYER'] }},
+  {path: 'employer/commands', component: CommandListComponent,canActivate: [AuthGuard, RoleGuard], data: { requiredRoles: ['ROLE_USER_EMPLOYER'] }},
+  {path: 'employer/commands/:cId', component: CommandDetailsComponent,canActivate: [AuthGuard, RoleGuard], data: { requiredRoles: ['ROLE_USER_EMPLOYER'] }},
   {path: 'admin/home', component: HomeAdminComponent,canActivate: [AuthGuard, RoleGuard], data: { requiredRoles: ['ROLE_ADMIN'] }},
+
+  {path: 'commande', component: CommandListComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
 ];
 @NgModule({
@@ -44,6 +58,9 @@ const routes: Routes = [
     AdminBoardComponent,
     EmployerBoardComponent,
     DefaultBoardComponent,
+    CommandListComponent,
+    CommandComponent,
+    CommandDetailsComponent,
 
   ],
   imports: [
@@ -51,6 +68,13 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     AppRoutingModule,
+    NgbModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        // Add other JwtModule options as needed
+      },
+    }),
     RouterModule.forRoot(routes),
 
   ],

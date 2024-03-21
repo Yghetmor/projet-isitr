@@ -111,10 +111,13 @@ public class AuthService {
 			//maybe throw exception better than empty string ? 
 			String role = accountPrincipal.getAuthorities().stream() .findFirst().map(item ->
 			item.getAuthority()).orElse("");
-
+			
+			long idEmpl = employerRepository.findEmployerByAccountEmail(accountPrincipal.getUsername())
+					.map(Employer::getId).orElse(0L);
+			
 
 			return ResponseEntity.ok(new JwtResponse( jwtToken,
-					accountPrincipal.getUsername(), role));
+					accountPrincipal.getUsername(), role,idEmpl));
 
 		}catch (AuthenticationException e){
 			e.getMessage();

@@ -69,6 +69,14 @@ public class CommandeService {
 		return new ResponseEntity<Commande>(c,HttpStatus.CREATED);	
 	}
 	
+    public ResponseEntity<?> findByEmployerId(long employerId) {
+        List<Commande> commandes = commandeRepository.findByUtilisateurId(employerId);
+        if (commandes.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(commandes, HttpStatus.OK);
+    }
+	
 	
 	
 	

@@ -89,6 +89,10 @@ public class AventixRestApiApplication implements CommandLineRunner{
 		Commande c1 = new Commande(50,10,timestamp, "en cours",employer,null);
 		commandeRepository.save(c1);
 		
+		timestamp = new Timestamp((new Date().getTime())-60*60*1000);		
+		Commande c2 = new Commande(100,5,timestamp, "en cours",employer,null);
+		commandeRepository.save(c2);
+		
 				
 	}
 

@@ -1,0 +1,30 @@
+.main{
+  padding-top: 30px;
+  min-height: calc(100vh - 56px); /* Adjusted to min-height */
+  background: linear-gradient(rgba(211, 211, 211, 0.2), rgba(123, 104, 238, 0.2));
+  filter: saturate(60%);
+}
+
+h2{
+  padding: 20px 10px;
+  text-align: center;
+}
+
+.container{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  /*margin:50px 0;*/
+}
+
+.main .button {
+  padding-top: 20px;
+}
+
+.button span{
+  margin-left: 20px;
+}
+
+

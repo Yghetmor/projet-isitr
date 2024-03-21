@@ -1,4 +1,5 @@
 <!--xs (phones), sm (tablets), md (desktops), and lg (larger desktops)-->
+<!--xs (phones), sm (tablets), md (desktops), and lg (larger desktops)-->
 <header class="navbar navbar-expand-md navbar-dark bg-purple">
   <div class="container-fluid">
     <a class="navbar-brand" href="#">Rasengan Solution</a>
@@ -10,7 +11,7 @@
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="navbar-nav mx-auto">
         <li class="nav-item px-4">
-          <a class="nav-link" href="#">Gérer les comptes</a>
+          <a class="nav-link" href="#">Commandes</a>
         </li>
         <li class="nav-item px-4">
           <a class="nav-link" href="#">Onglet2</a>
@@ -28,8 +29,8 @@
     </div>
 
     <div class="ms-auto">
-      <a routerLink="/home/portal/signin" class="btn btn-outline-light me-2" >Connexion</a>
-      <a routerLink="/home/portal" class="btn btn-light" >Inscription</a>
+      <a routerLink="/home" class="btn btn-light" (click)="onLogout()" >Deconnexion</a>
     </div>
   </div>
 </header>
+
