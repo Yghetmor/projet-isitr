@@ -76,6 +76,47 @@ public class CommandeService {
         }
         return new ResponseEntity<>(commandes, HttpStatus.OK);
     }
+    
+    public ResponseEntity<Commande> deleteOne(long numCommande) {
+        Commande c1 = this.commandeRepository.findById(numCommande).orElseThrow();
+        Timestamp dateOrigine = c1.getDateCommande();
+        Instant instant = dateOrigine.toInstant();
+        LocalDateTime localDateTimeToCompare = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        long difference = ChronoUnit.DAYS.between(localDateTimeToCompare, currentDateTime);
+        if (difference <= 3) {
+            c1.setStatut("Annuler");
+            commandeRepository.save(c1);
+            return new ResponseEntity<>(c1, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+    
+    public ResponseEntity<Commande> confirmByNumber(long numCommande) {
+        Commande c1 = this.commandeRepository.findById(numCommande).orElseThrow();
+        if (c1.getStatut().equals("Confirmer")) {
+            c1.setStatut("Livrer");
+            commandeRepository.save(c1);
+            return new ResponseEntity<>(c1, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
+    
+    
+    
+    
+    public ResponseEntity<Commande> confirmByAdmin(long numCommande) {
+        Commande c1 = this.commandeRepository.findById(numCommande).orElseThrow();
+        if (c1.getStatut().equals("En cours")) {
+            c1.setStatut("Confirmer");
+            commandeRepository.save(c1);
+            return new ResponseEntity<>(c1, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+    }
 	
 	
 	

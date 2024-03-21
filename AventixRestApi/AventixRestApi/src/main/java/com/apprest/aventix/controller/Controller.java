@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -80,8 +81,24 @@ public class Controller {
     public ResponseEntity<?> findCommandsByEmployerId(@PathVariable Long employerId) {
         return commandeService.findByEmployerId(employerId);
     }
-	    
     
+    // Nour
+    
+	 @PutMapping("/confirm/{numCommande}")
+	    public ResponseEntity<?> confirmCommandeByAdmin(@PathVariable long numCommande) {
+	        return commandeService.confirmByAdmin(numCommande);
+	    }
+		
+	    @PutMapping("/livrer/{numCommande}")
+	    public ResponseEntity<Commande> confirmCommandeByNumberByEmployer(@PathVariable long numCommande) {
+	        return commandeService.confirmByNumber(numCommande);
+	    }
+
+	    @PutMapping("/annuler/{numCommande}")
+	    public ResponseEntity<Commande> deleteCommande(@PathVariable long numCommande) {
+	        return commandeService.deleteOne(numCommande);
+	    }
+		
    // Test  
     
     @GetMapping("employer/home")

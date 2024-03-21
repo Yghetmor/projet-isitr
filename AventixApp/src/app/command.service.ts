@@ -17,6 +17,10 @@ export class CommandService {
     return this.http.get<CommandModel[]>(`${this.url}/employer/${employerId}`);
   }
 
+  findOne(id : number): Observable<CommandModel> {
+    return this.http.get<CommandModel>(`${this.url}/${id}`)
+  }
+
 
 
 

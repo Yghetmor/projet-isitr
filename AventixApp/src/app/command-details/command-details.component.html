@@ -1,12 +1,14 @@
+<!--
 <div class="main">
   <div class="detail">
     <h2>Détails de la commande N°{{command?.numeroCommande}}</h2>
 
     <div class="card w-25">
-      <h4 class="card-header">{{klass?.name}}</h4>
+      <h4 class="card-header">{{command?.numeroCommande}}</h4>
       <div class="card-body">
         <div class="card-text">
-          Professeur principal : {{klass?.principalTeacher?.lastName}} {{klass?.principalTeacher?.firstName}}
+          Date de la commande : {{command?.dateCommande}}
+          Statut de la commande : {{command?.statut}}
         </div>
       </div>
       <div class="card-footer">
@@ -34,6 +36,5 @@
       <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">NON</button>
     </div>
   </ng-template>
-
-  <app-calendar></app-calendar>
 </div>
+-->
