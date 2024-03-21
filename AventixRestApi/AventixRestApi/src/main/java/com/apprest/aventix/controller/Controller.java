@@ -6,6 +6,11 @@ import com.apprest.aventix.payload.request.SignUpRequest;
 import com.apprest.aventix.service.AuthService;
 import com.apprest.aventix.service.CommandeService;
 import com.apprest.aventix.service.OperationService;
+import com.apprest.aventix.model.Operation;
+import org.springframework.http.ResponseEntity;
+import org.springframework.http.HttpStatus;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 import jakarta.validation.Valid;
 
@@ -39,6 +44,11 @@ public class Controller {
     @Autowired
     public Controller(OperationService operationService) {
         this.operationService = operationService;
+    }
+
+    @GetMapping("/operation")
+    public ResponseEntity<?> processOperation(@RequestBody Operation operation) {
+        return operationService.processOperation(operation);
     }
     
     // Partie authentication
@@ -112,5 +122,5 @@ public class Controller {
     	return "Admin Content";
     }
     
-    
+
 }
