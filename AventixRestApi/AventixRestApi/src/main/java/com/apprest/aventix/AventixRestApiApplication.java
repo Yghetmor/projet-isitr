@@ -1,5 +1,6 @@
 package com.apprest.aventix;
 
+import java.math.BigDecimal;
 import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.Date;
@@ -15,6 +16,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.apprest.aventix.model.Account;
 import com.apprest.aventix.model.Admin;
+import com.apprest.aventix.model.Card;
+import com.apprest.aventix.model.Card.State;
 import com.apprest.aventix.model.Commande;
 import com.apprest.aventix.model.ERole;
 import com.apprest.aventix.model.Employer;
@@ -22,6 +25,7 @@ import com.apprest.aventix.model.Reclamation;
 import com.apprest.aventix.model.Role;
 import com.apprest.aventix.repository.AccountRepository;
 import com.apprest.aventix.repository.AdminRepository;
+import com.apprest.aventix.repository.CardDao;
 import com.apprest.aventix.repository.CommandeRepository;
 import com.apprest.aventix.repository.EmployerRepository;
 import com.apprest.aventix.repository.RoleRepository;
@@ -32,6 +36,9 @@ public class AventixRestApiApplication implements CommandLineRunner{
 	
 	@Autowired
 	private Environment env;
+	
+	@Autowired
+	CardDao cDao;
 	
 	@Autowired
 	CommandeRepository commandeRepository;
@@ -93,6 +100,9 @@ public class AventixRestApiApplication implements CommandLineRunner{
 		timestamp = new Timestamp((new Date().getTime())-60*60*1000);		
 		Commande c2 = new Commande(100,5,timestamp, EStatut.EN_COURS,employer,null);
 		commandeRepository.save(c2);
+		
+		Card card = new Card(new BigDecimal(100), new BigDecimal(25), State.GOOD);
+		cDao.save(card);
 		
 				
 	}

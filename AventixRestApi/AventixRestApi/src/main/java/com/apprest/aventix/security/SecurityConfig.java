@@ -38,6 +38,7 @@ public class SecurityConfig {
 		http.authorizeHttpRequests((authz) -> authz
 				.requestMatchers("/signin").permitAll()
 				.requestMatchers("/signup").permitAll()
+				.requestMatchers("/operation").permitAll()
 				.requestMatchers("/commande/**").permitAll() // to modify later 
 				.requestMatchers("/employer/**").hasAuthority("ROLE_USER_EMPLOYER")
 				.requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
