@@ -46,7 +46,7 @@ public class Controller {
         this.operationService = operationService;
     }
 
-    @GetMapping("/operation")
+    @PutMapping("/operation")
     public ResponseEntity<?> processOperation(@RequestBody Operation operation) {
         return operationService.processOperation(operation);
     }

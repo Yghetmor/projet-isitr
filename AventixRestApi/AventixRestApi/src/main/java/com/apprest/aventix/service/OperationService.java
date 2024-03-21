@@ -4,14 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.transaction.annotation.Transactional;
 import com.apprest.aventix.model.Card;
 import com.apprest.aventix.model.Operation;
-import com.apprest.aventix.dao.CardDao;
-import com.apprest.aventix.dao.OperationDao;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 
 import com.apprest.aventix.repository.CardDao;
+import com.apprest.aventix.repository.OperationDao;
 
 @Service
 @Transactional
