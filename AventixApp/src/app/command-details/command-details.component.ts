@@ -27,6 +27,21 @@ export class CommandDetailsComponent {
     if (id != '') {
       this.commandService.findOne(+id).subscribe(v => this.command = v)
     }
+    console.log(this.command?.nbCarte);
+  }
+
+  calcMontant(nbCarte: number, tauxParticipation: number): number {
+    return nbCarte * 25 * (1 - (tauxParticipation / 100));
+  }
+
+  formatStatus(status?: string): string {
+    const statuses = {
+      EN_COURS: 'En cours',
+      CONFIRMER: 'Confirmée',
+      ANNULER: 'Annulée',
+      LIVRER: 'Livrée',
+    };
+    return statuses[status as keyof typeof statuses] || status || 'Status Unknown';
   }
 
   open(content: any) {
@@ -35,11 +50,12 @@ export class CommandDetailsComponent {
       backdrop: "static"})
   }
 
-/*  deleteById() {
-    this.commandService.delete(this.command? this.command.id : -1).subscribe(v => {
+  cancelCommande() {
+    this.commandService.cancel(this.command ? this.command.numeroCommande : -1).subscribe(v => {
       this.currentModal?.close()
       this.router.navigate(['../'], {relativeTo: this.activatedRoute})
     })
-  }*/
+  }
+
 
 }
