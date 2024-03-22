@@ -40,6 +40,7 @@ public class SecurityConfig {
 				.requestMatchers("/signup").permitAll()
 				.requestMatchers("/operation").permitAll()
 				.requestMatchers("/commande/**").permitAll() // to modify later 
+				.requestMatchers("/annuler/**").permitAll() // to modify later 
 				.requestMatchers("/employer/**").hasAuthority("ROLE_USER_EMPLOYER")
 				.requestMatchers("/admin/**").hasAuthority("ROLE_ADMIN")
 				.anyRequest().authenticated()			

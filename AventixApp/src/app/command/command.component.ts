@@ -8,7 +8,22 @@ import {CommandModel} from '../../model/command';
 })
 export class CommandComponent {
 
+
   @Input()
   command: CommandModel | undefined;
+
+
+
+
+
+  formatStatus(status?: string): string {
+    const statuses = {
+      EN_COURS: 'En cours',
+      CONFIRMER: 'Confirmée',
+      ANNULER: 'Annulée',
+      LIVRER: 'Livrée',
+    };
+    return statuses[status as keyof typeof statuses] || status || 'Status Unknown';
+  }
 
 }

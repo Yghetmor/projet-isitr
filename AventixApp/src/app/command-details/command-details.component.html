@@ -1,23 +1,24 @@
-<!--
 <div class="main">
+  <h2>Détails de la commande</h2>
   <div class="detail">
-    <h2>Détails de la commande N°{{command?.numeroCommande}}</h2>
-
-    <div class="card w-25">
-      <h4 class="card-header">{{command?.numeroCommande}}</h4>
+    <div class="card">
+      <h4 class="card-header">Commande N°{{command?.numeroCommande}}</h4>
       <div class="card-body">
-        <div class="card-text">
-          Date de la commande : {{command?.dateCommande}}
-          Statut de la commande : {{command?.statut}}
-        </div>
+          <p>Date de création : {{command?.dateCommande | date:'dd/MM/yyyy HH:mm'}}</p>
+          <p>Statut : {{formatStatus(command?.statut)}}<p>
+          <p>Nombre de cartes : {{command?.nbCarte}}<p>
+          <p>Taux de participation : {{command?.tauxParticipation}}<p>
+          <p>Montant total : {{ calcMontant(command?.nbCarte || 0, command?.tauxParticipation || 0)  }}€<p>
+
       </div>
       <div class="card-footer">
-        <button class="btn btn-danger" (click)="open(content)">Supprimer la classe</button>
+        <button class="btn btn-danger" (click)="open(content)">Annuler la commande</button>
+        <button class="btn btn-warning">Modifier la commande</button>
       </div>
     </div>
     <br>
-    <div>
-      <button type="button" class="btn btn-outline-info" routerLink="../">Retour vue classes</button>
+    <div class="navigation">
+      <button type="button" class="btn btn-outline-warning" routerLink="../">Retour historique des commandes</button>
     </div>
   </div>
   <ng-template #content let-modal>
@@ -27,14 +28,14 @@
     <div class="modal-body">
       <form>
         <div class="mb-3">
-          Voulez-vous vraiment supprimer la classe : {{klass?.name}}
+          Voulez-vous vraiment annuler la commande N° {{command?.numeroCommande}} ?
         </div>
       </form>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn btn-outline-dark" (click)="deleteById()">OUI</button>
+      <button type="button" class="btn btn-outline-dark" (click)="cancelCommande()">OUI</button>
       <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">NON</button>
     </div>
   </ng-template>
 </div>
--->
+

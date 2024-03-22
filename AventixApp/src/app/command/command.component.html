@@ -1,3 +1,13 @@
-<div class="card-command">
-  <h4 routerLink="./{{command?.numeroCommande}}">Commande N°{{command?.numeroCommande}} {{command?.dateCommande}} {{command?.statut}}</h4>
+<div class="card-command" [ngClass]="{'cancelled': command?.statut === 'ANNULER'}">
+  <h4 routerLink="./{{command?.numeroCommande}}">
+    <span>
+      Commande N°{{command?.numeroCommande}}
+    </span>
+    <span>
+      {{command?.dateCommande | date:'dd/MM/yyyy HH:mm' }}
+    </span>
+    <span>
+      {{formatStatus(command?.statut)}}
+    </span>
+  </h4>
 </div>
