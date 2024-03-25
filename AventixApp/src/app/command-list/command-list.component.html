@@ -7,8 +7,8 @@
     <div class="container">
       <app-command *ngFor="let c of commands" [command]="c" routerLink="{{c.numeroCommande}}"></app-command>
       <div class="button">
-        <button type="submit" class="btn btn-outline-warning" routerLink="./add">Créer une nouvelle commande</button>
-        <span><button type="button" class="btn btn-outline-warning" routerLink="../home">Retour</button></span>
+        <button type="submit" class="btn btn-warning">Créer une nouvelle commande</button>
+        <button type="button" class="btn btn-outline-warning" routerLink="../home">Retour</button>
       </div>
     </div>
   </div>

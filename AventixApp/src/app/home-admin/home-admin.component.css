@@ -1,0 +1,9 @@
+.main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 56px); /* Adjusted to min-height */
+  background: linear-gradient(rgba(211, 211, 211, 0.2), rgba(123, 104, 238, 0.2));
+  filter: saturate(60%);
+}
