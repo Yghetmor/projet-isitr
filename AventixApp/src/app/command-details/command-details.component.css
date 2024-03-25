@@ -1,0 +1,107 @@
+.main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+
+  padding-top: 30px;
+  min-height: calc(100vh - 56px); /* Adjusted to min-height */
+  background: linear-gradient(rgba(211, 211, 211, 0.2), rgba(123, 104, 238, 0.2));
+  filter: saturate(60%);
+}
+
+h2{
+  padding: 20px 10px;
+  text-align: center;
+}
+
+
+
+/* Detail section with subtle shadow and rounded corners */
+.detail {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+  background: #ffffff; /* Bright white background */
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+  margin-bottom: 20px;
+}
+
+/* Card styling with improved modern aesthetics */
+.card {
+  background: #f9f9f9; /* Lighter background for the card */
+  border: none; /* Remove borders for a flat design */
+  border-radius: 8px;
+  overflow: hidden; /* Ensures the border-radius clips the content */
+}
+
+.card-header {
+  background: linear-gradient(135deg,#9b59b6 , #71b7e6); /* Modern gradient header */
+  color: #ffffff;
+  padding: 15px 20px;
+  font-size: 1.25rem;
+}
+
+.card-body {
+  padding: 20px;
+  color: #666; /* Darker text for better readability */
+  line-height: 1.6; /* Improve line spacing */
+}
+
+.card-footer {
+  background: #f0f0f0;
+  padding: 10px 20px;
+  display: flex;
+  justify-content: space-between; /* Adjusts buttons to each end */
+  align-items: center; /* Keeps buttons vertically aligned */
+}
+
+/* Button styling with transitions for interactivity */
+.btn {
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-danger {
+  background-color: #ff4757; /* Brighter red for attention */
+  color: #ffffff;
+}
+
+.btn-danger:hover {
+  background-color: #ff6b81;
+}
+
+.btn-outline-warning {
+  background-color: transparent;
+  color: #9b59b6; /* Gold color for contrast */
+  border: 2px solid #9b59b6;
+}
+
+.btn-outline-warning:hover {
+  background-color: #9b59b6;
+  color: #ffffff;
+}
+
+.btn-outline-dark {
+  background-color: transparent;
+  color: #2f3542; /* Dark color for a subtle option */
+  border: 2px solid #2f3542;
+}
+
+.btn-outline-dark:hover {
+  background-color: #2f3542;
+  color: #ffffff;
+}
+
+/* Navigation with spacing */
+.navigation {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+}

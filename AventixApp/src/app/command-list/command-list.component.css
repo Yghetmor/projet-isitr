@@ -19,12 +19,44 @@ h2{
   /*margin:50px 0;*/
 }
 
-.main .button {
+.main .button{
   padding-top: 20px;
 }
 
-.button span{
-  margin-left: 20px;
+.btn {
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-outline-warning {
+  padding: calc(10px - 2px) calc(15px - 2px); /* Adjusted padding */
+  background-color: transparent;
+  color: #9b59b6; /* Gold color for contrast */
+  border: 2px solid #9b59b6;
+
+}
+
+.btn-outline-warning:hover {
+  background-color: #9b59b6;
+  color: #ffffff;
+}
+
+.btn-outline-dark {
+  background-color: transparent;
+  color: #2f3542; /* Dark color for a subtle option */
+  border: 2px solid #2f3542;
+}
+
+.btn-outline-dark:hover {
+  background-color: #2f3542;
+  color: #ffffff;
+}
+
+.btn:not(:last-child) {
+  margin-right: 30px; /* Adds space to the right of each button except the last one */
 }
 
 

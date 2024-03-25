@@ -9,4 +9,16 @@
   margin:24px;
   border-radius: 10px;
   border: 1px solid rgba(255,255,255,0.1);
+
+}
+
+.card-command h4 {
+  display: flex;
+  justify-content: space-around; /* This will space out the child elements */
+  align-items: center; /* Align items vertically */
+  width: 100%; /* Ensure the h4 element spans the full width of its container */
+}
+
+.cancelled {
+  background-color: grey;
 }

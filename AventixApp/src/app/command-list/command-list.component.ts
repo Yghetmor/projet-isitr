@@ -41,7 +41,6 @@ export class CommandListComponent implements OnInit{
   getEmployerId():number{
     let employerIdString = localStorage.getItem('employer_id') || "0";
     return parseInt(employerIdString, 10);
-
   }
 
   fetchCommands():void{
