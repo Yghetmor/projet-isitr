@@ -27,11 +27,11 @@ import { CommandComponent } from './command/command.component';
 import {JwtModule} from "@auth0/angular-jwt";
 
 import { CommandDetailsComponent } from './command-details/command-details.component';
+import { CommandCreateComponent } from './command-create/command-create.component';
 
 export function tokenGetter() {
   return localStorage.getItem('access_token');
 }
-
 
 const routes: Routes = [
   {path: 'home', component: HomeComponent, canActivate: [NoRoleGuard]},
@@ -40,10 +40,9 @@ const routes: Routes = [
   {path: 'home/portal/signin', component: SigninComponent, canActivate: [NoRoleGuard]},
   {path: 'employer/home', component: HomeEmployerComponent,canActivate: [AuthGuard, RoleGuard], data: { requiredRoles: ['ROLE_USER_EMPLOYER'] }},
   {path: 'employer/commands', component: CommandListComponent,canActivate: [AuthGuard, RoleGuard], data: { requiredRoles: ['ROLE_USER_EMPLOYER'] }},
+  {path: 'employer/commands/create', component: CommandCreateComponent,canActivate: [AuthGuard, RoleGuard], data: { requiredRoles: ['ROLE_USER_EMPLOYER'] }},
   {path: 'employer/commands/:cId', component: CommandDetailsComponent,canActivate: [AuthGuard, RoleGuard], data: { requiredRoles: ['ROLE_USER_EMPLOYER'] }},
   {path: 'admin/home', component: HomeAdminComponent,canActivate: [AuthGuard, RoleGuard], data: { requiredRoles: ['ROLE_ADMIN'] }},
-
-  {path: 'commande', component: CommandListComponent},
   {path: '', redirectTo: 'home', pathMatch: 'full'},
 ];
 @NgModule({
@@ -61,6 +60,7 @@ const routes: Routes = [
     CommandListComponent,
     CommandComponent,
     CommandDetailsComponent,
+    CommandCreateComponent,
 
   ],
   imports: [

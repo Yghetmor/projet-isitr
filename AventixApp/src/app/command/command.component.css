@@ -1,24 +1,47 @@
-.card-command{
-  display: flex;
-  justify-content: center;
-  align-items: center;
+/* command.component.css */
+.card-command {
+  display: block;
+  padding: 15px;
+  margin-bottom: 10px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  text-decoration: none; /* Remove if you prefer the default link style */
+}
 
-  height:50px;
-  width:80vw;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-  margin:24px;
-  border-radius: 10px;
-  border: 1px solid rgba(255,255,255,0.1);
+.card-command:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
 
+.card-command.cancelled {
+  background-color: #f8d7da; /* Bootstrap's danger background for a cancelled look */
+  color: #721c24; /* Bootstrap's danger text color */
 }
 
 .card-command h4 {
-  display: flex;
-  justify-content: space-around; /* This will space out the child elements */
-  align-items: center; /* Align items vertically */
-  width: 100%; /* Ensure the h4 element spans the full width of its container */
+  margin: 0;
+  font-size: 1.1rem; /* Adjust the size as needed */
+  color: #333; /* Dark grey for better readability */
 }
 
-.cancelled {
-  background-color: grey;
+.card-command span {
+  display: block; /* Each piece of info on its own line */
+  margin: 5px 0; /* Spacing between lines */
+}
+
+.card-command span:nth-child(2) {
+  color: #666; /* Lighter text for the date */
+  font-size: 0.9rem;
+}
+
+.card-command span:nth-child(3) {
+  font-weight: bold; /* Make the status stand out */
+  color: #28a745; /* Green for active statuses, adjust based on your app's theme */
+}
+
+/* Additional style for cancelled status */
+.card-command.cancelled span:nth-child(3) {
+  color: #dc3545; /* Bootstrap's danger color for cancelled or negative statuses */
 }

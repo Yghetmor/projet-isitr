@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import {environment} from "../environment/environment";
 import {CommandModel} from "../model/command";
 import {HttpClient} from "@angular/common/http";
-import {Observable} from "rxjs";
+import {BehaviorSubject, Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +23,11 @@ export class CommandService {
 
   cancel(id: number) {
     return this.http.put(`${this.url}/annuler/${id}`,{})
+  }
+
+  add(value: CommandModel): Observable<CommandModel> {
+    console.log(value)
+    return this.http.post<CommandModel>(`${this.url}/commande`,value)
   }
 
 

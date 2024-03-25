@@ -5,7 +5,9 @@ export interface CommandModel {
   tauxParticipation: number;
   dateCommande: Date | string; // Timestamps in TypeScript can be represented as Date objects or ISO string formats
   statut: string;
-  //utilisateur: Employer; // to do : define interface
-  //reclamations: Reclamation[]; // to do : define interface
+  utilisateur: {
+    id: number;
+  };
+  reclamations: any[]; // to do : define Reclamation instead of any
 
 }

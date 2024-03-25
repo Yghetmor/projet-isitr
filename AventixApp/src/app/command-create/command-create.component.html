@@ -1,0 +1,25 @@
+<div class="main">
+<div class="container">
+  <div class="title">Inscription</div>
+  <div *ngIf="successMessage" class="successMessage">
+    {{ successMessage }}
+  </div>
+  <div *ngIf="errorMessage !==''" class="errorMessage">
+    {{ errorMessage }}
+  </div>
+  <form [formGroup]="createCommandForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="nbCarte">Nombre de cartes</label>
+      <input type="number" formControlName="nbCarte" required>
+      <div class="error-form" *ngIf="formSubmitted && createCommandForm.controls['nbCarte'].errors?.['required']">Champs obligatoire</div>
+    </div>
+    <div class="form-group">
+      <label for="tauxParticipation">Taux de participation</label>
+      <input type="number" formControlName="tauxParticipation" required>
+      <div class="error-form" *ngIf="formSubmitted && createCommandForm.controls['tauxParticipation'].errors?.['required']">Champs obligatoire</div>
+
+    </div>
+    <button type="submit" class="btn btn-outline-warning">Créer la commande</button>
+  </form>
+</div>
+</div>

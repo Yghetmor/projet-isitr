@@ -1,4 +1,6 @@
 .main{
+  display: flex;
+  flex-direction: column;
   padding-top: 30px;
   min-height: calc(100vh - 56px); /* Adjusted to min-height */
   background: linear-gradient(rgba(211, 211, 211, 0.2), rgba(123, 104, 238, 0.2));
@@ -12,15 +14,21 @@ h2{
 
 .container{
   display:flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-
   /*margin:50px 0;*/
 }
 
+.scroll{
+  overflow-y: auto;
+  max-height: 60vh;
+  width:60%
+}
+
 .main .button{
-  padding-top: 20px;
+  padding-top: 30px;
 }
 
 .btn {
@@ -58,5 +66,3 @@ h2{
 .btn:not(:last-child) {
   margin-right: 30px; /* Adds space to the right of each button except the last one */
 }
-
-
