@@ -45,7 +45,7 @@ export class SignupComponent implements OnInit{
     this.authSerivce.register(email, password, noSiren).subscribe(
       (response) => {
         this.errorMessage = '';
-        this.successMessage = 'Registration successful';
+        this.successMessage = 'Inscription réussie';
         setTimeout(() => {
           this.router.navigate([`home`]);
           //change to login page when created

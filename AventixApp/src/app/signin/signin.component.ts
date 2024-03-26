@@ -65,7 +65,7 @@ export class SigninComponent implements OnInit {
             return; // Exit the method to prevent further execution
         }
 
-        this.successMessage = 'Login successful';
+        this.successMessage = 'Connexion réussie';
 
         setTimeout(() => {
           this.router.navigate([redirectUrl]);
